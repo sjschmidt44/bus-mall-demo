@@ -1,0 +1,19 @@
+@import url('reset.css');
+@import url('layout.css');
+
+p {
+   text-align: center;
+   font-size: 2em;
+}
+
+img {
+  box-shadow: .5em .5em .5em .5em;
+}
+
+#images {
+  margin-bottom: 1em;
+}
+
+canvas {
+  max-height: 20rem;
+}
