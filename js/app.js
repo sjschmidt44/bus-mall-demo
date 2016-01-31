@@ -1,6 +1,6 @@
 var data;
 var allProducts = [];
-var productNames = ['boots', 'chair', 'scissors', 'water_can', 'wine_glass'];
+var productNames = ['boots', 'chair', 'scissors', 'water_can', 'wine_glass', 'bag', 'banana', 'cthulhu', 'dragon', 'pen', 'shark', 'sweep', 'unicorn', 'usb'];
 
 function Product(name, path) {
   this.name = name;
@@ -31,10 +31,10 @@ function buildAlbum() {
       datasets: [
         {
           label: "Product Analysis Results",
-          fillColor: "rgba(220,220,220,0.5)",
-          strokeColor: "rgba(220,220,220,0.8)",
-          highlightFill: "rgba(220,220,220,0.75)",
-          highlightStroke: "rgba(220,220,220,1)",
+          fillColor: "rgba(220,22,0,1)",
+          strokeColor: "rgba(220,22,0,0.8)",
+          highlightFill: "rgba(220,22,0,0.75)",
+          highlightStroke: "rgba(220,22,0,1)",
           data: []
         }
       ]
@@ -55,6 +55,7 @@ var productRank = {
   rightEl: document.getElementById('img3'),
   imageEls: document.getElementById('images'),
   resultsButton: document.getElementById('showResults'),
+  resetButton: document.getElementById('reset'),
   ctx: document.getElementById("canvas").getContext("2d"),
 
   getRandomIndex: function() {
@@ -96,8 +97,13 @@ var productRank = {
   showButton: function() {
     this.resultsButton.hidden = false;
     this.resultsButton.addEventListener('click', function() {
+      productRank.resetButton.hidden = false;
       productRank.resultsButton.hidden = true;
       productRank.barChart = new Chart(productRank.ctx).Bar(data);
+      productRank.resetButton.addEventListener('click', function() {
+        productRank.resetButton.hidden = true;
+        location.reload();
+      })
     });
   },
 
@@ -111,7 +117,7 @@ var productRank = {
       }
       productRank.displayImages();
     } else {
-      console.log('Click the image, Idiot!');
+      alert('Click the image, Idiot!');
     }
   }
 };

@@ -17,3 +17,13 @@ img {
 canvas {
   max-height: 20rem;
 }
+
+body {
+  background-color: lightblue;
+}
+
+@media (min-width: 1000px) {
+  body {
+    background-color: lightgrey;
+  }
+}
