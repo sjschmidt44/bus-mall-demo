@@ -1,6 +1,19 @@
-var data;
 var allProducts = [];
 var productNames = ['boots', 'chair', 'scissors', 'water_can', 'wine_glass', 'bag', 'banana', 'cthulhu', 'dragon', 'pen', 'shark', 'sweep', 'unicorn', 'usb'];
+
+data = {
+  labels: [],
+  datasets: [
+    {
+      label: "Product Analysis Results",
+      fillColor: "rgba(220,22,0,1)",
+      strokeColor: "rgba(220,22,0,0.8)",
+      highlightFill: "rgba(220,22,0,0.75)",
+      highlightStroke: "rgba(220,22,0,1)",
+      data: []
+    }
+  ]
+};
 
 function Product(name, path) {
   this.name = name;
@@ -12,36 +25,11 @@ function Product(name, path) {
   allProducts.push(this);
 }
 
-function buildAlbum() {
+(function buildAlbum() {
   for (var i = 0; i < productNames.length; i++) {
     new Product(productNames[i], 'imgs/' + productNames[i] + '.jpg');
   }
-  localStorage.setItem('allProducts', JSON.stringify(allProducts));
-}
-
-(function checkLocal() {
-  if (localStorage.chartData && localStorage.allProducts) {
-    console.log('Exists');
-    data = JSON.parse(localStorage.chartData);
-    allProducts = JSON.parse(localStorage.getItem('allProducts'));
-  } else {
-    console.log('Doesnt exist');
-    data = {
-      labels: [],
-      datasets: [
-        {
-          label: "Product Analysis Results",
-          fillColor: "rgba(220,22,0,1)",
-          strokeColor: "rgba(220,22,0,0.8)",
-          highlightFill: "rgba(220,22,0,0.75)",
-          highlightStroke: "rgba(220,22,0,1)",
-          data: []
-        }
-      ]
-    };
-    buildAlbum();
-  }
-})();
+})()
 
 var productRank = {
   totalClicks: 0,
@@ -90,8 +78,6 @@ var productRank = {
         console.log(allProducts[i].name + ' has ' + allProducts[i].tally + ' votes');
       }
     }
-    localStorage.setItem('chartData', JSON.stringify(data));
-    localStorage.setItem('allProducts', JSON.stringify(allProducts));
   },
 
   showButton: function() {
