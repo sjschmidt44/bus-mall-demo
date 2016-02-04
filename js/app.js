@@ -59,6 +59,10 @@ var productRank = {
       productRank.displayImages();
     }
 
+    productRank.leftObj.views += 1;
+    productRank.midObj.views += 1;
+    productRank.rightObj.views += 1;
+
     productRank.leftEl.src = productRank.leftObj.path;
     productRank.leftEl.id = productRank.leftObj.name;
 
