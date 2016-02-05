@@ -69,12 +69,15 @@ var productRank = {
   displayResults: function() {
     var ulEl = document.createElement('ul');
     for (var i in allProducts) {
-      var liEl = document.createElement('li');
+      var liElOne = document.createElement('li');
       var str = allProducts[i].name + ' has ' + allProducts[i].tally + ' votes.';
       str = str.charAt(0).toUpperCase() + str.slice(1);
-      liEl.textContent = (str);
-      ulEl.appendChild(liEl);
+      liElOne.textContent = (str);
+      ulEl.appendChild(liElOne);
     }
+    var liElTwo = document.createElement('li');
+    liElTwo.textContent = 'Total User Clicks: ' + productRank.totalClicks;
+    ulEl.appendChild(liElTwo);
     this.resultsEl.appendChild(ulEl);
   },
 
@@ -95,6 +98,7 @@ var productRank = {
   onClick: function() {
     if (event.target.id === productRank.leftObj.name || event.target.id === productRank.midObj.name || event.target.id === productRank.rightObj.name) {
       productRank.tallyClicks(event.target.id);
+      productRank.totalClicks += 1;
 
       if (productRank.totalClicks % 15 === 0) {
         productRank.imageEls.removeEventListener('click', productRank.onClick);
